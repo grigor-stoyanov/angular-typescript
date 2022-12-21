@@ -1,0 +1,5 @@
+To initialize our angular app we use command lines ng app-name new and to run the server we use ng serve --open
+We can use Angular Schematics to generate new components from commandline
+For example ng g c list generates a list component in the src/app directory which include
+css,html and ts files as well ass modifying app.module.ts file
+To use the new component we add it in the <app-list></app-list> tag inside the app.component.html file

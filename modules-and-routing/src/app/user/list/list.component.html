@@ -1,0 +1,6 @@
+<button (click)="reloadUsersHandler()">Reload</button>
+<div id="user-list-container">
+  <div *ngFor="let user of userList" [routerLink]="['/user','detail',user.id]">
+    {{user.username}}
+  </div>
+</div>

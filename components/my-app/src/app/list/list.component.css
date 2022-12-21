@@ -1,0 +1,4 @@
+/* Even though same ID the shadow dom allows full encapsulation of components */
+#title {
+  color: red;
+}

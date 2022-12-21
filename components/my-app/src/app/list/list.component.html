@@ -1,0 +1,28 @@
+<p id="title">This is called interpolation -> {{ myProp}}</p>
+<ul id="list-container">
+  <!--  the * generates a ng-template by binding -->
+  <li *ngFor="let user of users;let i = index;" class="list-item">
+    <!--    Here we are nesting components with eachother!-->
+    <!--    [user]="user" binds the prop user from list-component.ts to list-item.ts -->
+    <app-list-item [user]="user" [showFirstName]="showFirstName" staticString="index"
+      (customEvent)="customEventHandler($event)" (click)="listItemClickHandler(i)">
+    </app-list-item>
+    <!--    Dummy Element allows attaching functions and controlling html whithin-->
+    <!--    <ng-container>{{user.firstName}}</ng-container>-->
+  </li>
+</ul>
+<!-- They Dont Visualise but exist in the dom-->
+<!-- Once parsed can be cloned and put in any number of places without browser creating it-->
+<ng-template>asdasda</ng-template>
+<template>asdasdasd</template>
+
+<!--el.addEventListener('click',($event)=> this.handleClickEvent($event););-->
+<button (click)="handleClickEvent($event)">
+  <ng-container *ngIf="showFirstName">Hide</ng-container>
+  <ng-container *ngIf="!showFirstName">Show</ng-container>
+  First Name
+</button>
+
+<div *ngIf="showSelectedIndex">
+  Selected index is {{selectedUserIndex}}
+</div>

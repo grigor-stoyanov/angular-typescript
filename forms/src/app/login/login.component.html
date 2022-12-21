@@ -1,0 +1,25 @@
+<!--Example of a basic Template Form-->
+<!--Not useful when we want an array of values-->
+<!-- Once FormModule is imported form becomes a directive-->
+<form #loginForm="ngForm" (ngSubmit)="handleFormSubmit(loginForm.value)">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <!-- ngModel makes the input a control and register them in the form -->
+    <!-- Bannana in a box syntax allows us to get the state of the form in the component.ts-->
+    <input #emailInput="ngModel" type="text" id="email" [(ngModel)]="email" name="email" required email>
+    <ng-container *ngIf="emailInput.touched">
+      <div *ngIf="emailInput.errors?.['email']">Invalid email</div>
+      <div *ngIf="emailInput.errors?.['required']">Email isng  Required</div>
+    </ng-container>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input #passwordInput="ngModel" type="text" id="password" [ngModel]="password" name="password" [appMaxCount]="5">
+    <div *ngIf="passwordInput.errors?.['appMaxCount']">Too long password</div>
+  </div>
+  <!--  Automatically submit-->
+  <button>Login</button>
+</form>
+<!-- value is an object for all the controllers-->
+{{loginForm.value|json }}
+

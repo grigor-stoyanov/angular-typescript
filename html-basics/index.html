@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+    <!--  Loads script as page loads (doesn't wait)  -->
+    <script async></script>
+    <script>
+        <!-- Wont be selected-->
+        const main_id = document.getElementById('main-heading')
+        console.log(123)
+    </script>
+</head>
+<body>
+<h1 id="main-heading">Hello World!</h1>
+<!-- Refreshes the page ruining user experience -->
+<a href="/index.html">Home</a>
+<a href="/about.html">About</a>
+<a href="/contact-us.html">Contact Us</a>
+<!--scripts execute when page is loaded-->
+<script defer>
+
+
+
+
+    const main_heading = document.getElementById('main-heading')
+    const routes = {
+        '/index.html': '<h1>Home</h1>',
+        '/about.html': '<h1>About</h1>',
+        '/contact-us.html': '<h1>Contact Us</h1>'
+    }
+
+    function render(path) {
+        const contentForPath = routes[path]
+        if (!contentForPath) {
+            return;
+        }
+        main_heading.innerHTML = routes[path]
+    }
+
+
+    document.querySelectorAll('a').forEach((el) => el.addEventListener('click', (e) => {
+        e.preventDefault()
+        console.log(e.target)
+        const {target} = e
+        const path = target.getAttribute('href')
+        console.log(path)
+        render(path)
+        history.pushState('', '', path);
+    }))
+
+    // render(getPath(window.location.pathname))
+
+    window.addEventListener('popstate', (e) => {
+            e.preventDefault()
+        }
+    )
+    window.addEventListener("hashchange", (e) => {
+            e.preventDefault()
+        }
+    )
+
+</script>
+</body>
+</html>
