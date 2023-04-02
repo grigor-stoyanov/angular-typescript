@@ -1,0 +1,16 @@
+ <nav>
+  <a routerLink="/">Home</a>
+  <a routerLink="/details">Details</a>
+</nav>
+
+{{counter$|async}}
+{{url$|async}}
+<button (click)="incrementHandler()">Click Me!</button>
+<input #counterValue type="number" [value]="counter$|async">
+<button (click)="setCounterValue(counterValue.valueAsNumber)">No Click Me!</button>
+<input #emailFilter type="email">
+<button (click)="reloadHandler()">Reload</button>
+<div *ngIf="!(isFetchingUsers$|async)">Loading...</div>
+<div *ngIf="(isFetchingUsers$|async)">{{users$ |async |json}}</div>
+
+<router-outlet></router-outlet> 
